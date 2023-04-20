@@ -1,8 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:pawd/widgets/OnBoardingSwipe.dart';
-import 'package:pawd/blocs/onboard_bloc.dart';
-import 'package:pawd/enums.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -47,6 +44,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
 
+  void _onPageChanged(int pageIndex) {
+    setState(() {
+      _currentPage = pageIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +88,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 200,
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(height: 40),
+                        SizedBox(height: 20),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: CustomNavigationWidget(
+                            pageCount: 3, // Replace with the number of pages
+                            currentPageIndex: _currentPage,
+                          ),
+                        ),
+                        SizedBox(height: 20,),
                         Text(
                           _pages[index]['title'] ?? "",
                           style: TextStyle(
@@ -146,4 +157,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 }
 
+class CustomNavigationWidget extends StatelessWidget {
+  final int pageCount;
+  final int currentPageIndex;
+
+  const CustomNavigationWidget({
+    Key? key,
+    required this.pageCount,
+    required this.currentPageIndex,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        pageCount,
+            (index) =>
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: index == currentPageIndex ? Colors.white : Colors.grey,
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(50.0),
+                    right: Radius.circular(50.0),
+                  ),
+                ),
+              ),
+            ),
+      ),
+    );
+  }
+}
 

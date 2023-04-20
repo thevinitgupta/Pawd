@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "376197965339",
+    "project_id": "pawd-todo",
+    "storage_bucket": "pawd-todo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376197965339:android:95af3cf29dede025e4babe",
+        "android_client_info": {
+          "package_name": "com.example.pawd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376197965339-bosmcfquhdpmonorlfl6ddh144t7bfv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOtK7bAB7Yo_ohR7OlmVxFhmdfX9WxppQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376197965339-bosmcfquhdpmonorlfl6ddh144t7bfv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

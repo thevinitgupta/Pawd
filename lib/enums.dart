@@ -1,6 +1,0 @@
-
-
-enum SlideEnum{
-  next,
-  previous
-}
