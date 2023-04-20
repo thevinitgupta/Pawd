@@ -1,0 +1,6 @@
+
+
+enum SlideEnum{
+  next,
+  previous
+}
