@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -14,17 +13,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   List<Map<String, String>> _pages = [
     {
-      'title': 'Welcome to MyApp',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'title': 'Manage your tasks',
+      'description': 'You can easily manage all of your daily tasks in DoMe for free',
       'image': 'assets/onboard1.svg'
     },
     {
-      'title': 'Easy to Use',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'title': 'Create daily routine',
+      'description': 'In Uptodo  you can create your personalized routine to stay productive',
       'image': 'assets/onboard2.svg'    },
     {
-      'title': 'Get Started',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'title': 'Orgonaize your tasks',
+      'description': 'You can organize your daily tasks by adding your tasks into separate categories',
       'image': 'assets/onboard3.svg'
     },
   ];
