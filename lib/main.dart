@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pawd/utils/shared_pref_helper.dart';
+import 'package:pawd/views/home.dart';
 import 'package:pawd/views/on_boarding.dart';
 import 'package:pawd/views/signup.dart';
 import 'views/welcome.dart';
@@ -47,16 +49,14 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => Signup(),
       },
       theme: ThemeData(
-        primarySwatch: primaryColor,
         primaryColor: Color(0xFF8875FF),
-        backgroundColor: Color(0x121212),
-        scaffoldBackgroundColor: Color(0x121212),
+        scaffoldBackgroundColor: Color(0xFF040404),
         textTheme: TextTheme(
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             color: Colors.white,
           ),
-          bodyText2: TextStyle(color: Colors.white30, fontSize: 22),
-        ),
+          bodyMedium: TextStyle(color: Colors.white30, fontSize: 22),
+        ), colorScheme: ColorScheme.fromSwatch(primarySwatch: primaryColor).copyWith(background: Color(0x121212)),
       ),
       home: const MyHomePage(title: 'Pawd - Todo List for the Next Gen'),
     );
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // move to home page;
                 return Container();
               }
-              return OnboardingScreen();
+              return Home();
             }
 
             return CircularProgressIndicator();
