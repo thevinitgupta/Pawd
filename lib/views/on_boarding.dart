@@ -1,6 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pawd/res/colors.dart';
+import 'package:pawd/res/sizes.dart';
+import 'package:pawd/res/strings.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -11,25 +14,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
-  List<Map<String, String>> _pages = [
-    {
-      'title': 'Manage your tasks',
-      'description': 'You can easily manage all of your daily tasks in DoMe for free',
-      'image': 'assets/onboard1.svg'
-    },
-    {
-      'title': 'Create daily routine',
-      'description': 'In Uptodo  you can create your personalized routine to stay productive',
-      'image': 'assets/onboard2.svg'    },
-    {
-      'title': 'Orgonaize your tasks',
-      'description': 'You can organize your daily tasks by adding your tasks into separate categories',
-      'image': 'assets/onboard3.svg'
-    },
-  ];
+
 
   void _nextPage() {
-    if (_currentPage == _pages.length - 1) {
+    if (_currentPage == onboardPages.length - 1) {
       // last page reached, show Get Started button
       Navigator.pushReplacementNamed(context, '/welcome');
     } else {
@@ -57,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Container(
               alignment: AlignmentDirectional.topStart,
-              padding: EdgeInsets.fromLTRB(30, 25, 0, 0),
+              padding: EdgeInsets.fromLTRB(p_30, p_25, p_0, p_0),
                 child: GestureDetector(
                   onTap: (){
                     Navigator.pushReplacementNamed(context, '/welcome');
@@ -75,19 +63,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     _currentPage = page;
                   });
                 },
-                itemCount: _pages.length,
+                itemCount: onboardPages.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(p_20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
-                          _pages[index]['image'] ?? "",
-                          height: 200,
+                          onboardPages[index]['image'] ?? "",
+                          height: p_200,
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: p_20),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: CustomNavigationWidget(
@@ -95,17 +83,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             currentPageIndex: _currentPage,
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: p_20,),
                         Text(
-                          _pages[index]['title'] ?? "",
+                          onboardPages[index]['title'] ?? "",
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+                              fontSize: p_30, fontWeight: FontWeight.bold, color: Colors.white),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: p_20),
                         Text(
-                          _pages[index]['description']?? "",
+                          onboardPages[index]['description']?? "",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 22, color: Colors.white),
+                          style: TextStyle(fontSize: text_md, color: Colors.white),
                         )
                       ],
                     ),
@@ -115,8 +103,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Container(
               padding: EdgeInsets.symmetric(
-                  vertical: 25,
-                horizontal: 30
+                  vertical: p_25,
+                horizontal: p_30
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,24 +114,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onTap: _prevPage,
                       child: Text('BACK'),
                     ),
-                  if (_currentPage != _pages.length - 1)
+                  if (_currentPage != onboardPages.length - 1)
                     ElevatedButton(
                       onPressed: _nextPage,
                       child: Text('NEXT', style: TextStyle(
-                        fontSize: 22
+                        fontSize: text_md
                       ),),
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                        padding: EdgeInsets.symmetric(horizontal: p_20, vertical: p_14),
                       ),
                     ),
-                  if (_currentPage == _pages.length - 1)
+                  if (_currentPage == onboardPages.length - 1)
                     ElevatedButton(
                       onPressed: _nextPage,
                       child: Text('GET STARTED', style: TextStyle(
-                          fontSize: 22
+                          fontSize: text_md
                       )),
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                        padding: EdgeInsets.symmetric(horizontal: p_20, vertical: p_14),
                       ),
                     ),
                 ],
@@ -174,15 +162,15 @@ class CustomNavigationWidget extends StatelessWidget {
         pageCount,
             (index) =>
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(p_8),
               child: Container(
-                width: 10,
-                height: 10,
+                width: p_10,
+                height: p_10,
                 decoration: BoxDecoration(
                   color: index == currentPageIndex ? Colors.white : Colors.grey,
                   borderRadius: BorderRadius.horizontal(
-                    left: Radius.circular(50.0),
-                    right: Radius.circular(50.0),
+                    left: Radius.circular(p_50),
+                    right: Radius.circular(p_50),
                   ),
                 ),
               ),

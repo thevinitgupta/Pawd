@@ -1,5 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pawd/res/colors.dart';
+import 'package:pawd/res/sizes.dart';
+import 'package:pawd/res/strings.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -18,77 +21,77 @@ class _WelcomeState extends State<Welcome> {
           children: [
             Container(
               alignment: AlignmentDirectional.topStart,
-              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(p_15, 0, 0, 0),
               child: GestureDetector(
                   onTap: (){
                     Navigator.pushReplacementNamed(context, '/');
                   },
-                  child : Icon(Icons.chevron_left_rounded, color: Colors.white38, size: 40.0,)
+                  child : const Icon(Icons.chevron_left_rounded, color: Colors.white38, size: 40.0,)
               ),
             ),
             Expanded(
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(25.0, 60, 25.0, 0),
+                  padding: const EdgeInsets.fromLTRB(p_25, p_60, p_25, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
                         "Welcome to Pawd",
                         style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+                            fontSize: text_xl, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: p_20),
                       Text(
                         "Please login to your account or create new account to continue",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18, color: Colors.white54),
+                        style: TextStyle(fontSize: text_sm, color: Colors.white54),
                       )
                     ],
                   ),
                 )),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(vertical: p_40, horizontal: p_25),
               child: Column(
                 children: [
                   SizedBox(
-                      height:70, //height of button
+                      height:p_70, //height of button
                       width:double.infinity,
                       child : ElevatedButton(
                           onPressed: () => {
                             Navigator.pushReplacementNamed(context, "/login")
                           },
-                          child: Text('LOGIN', style: TextStyle(
-                              fontSize: 23,
+                          child: const Text('LOGIN', style: TextStyle(
+                              fontSize: text_lg,
                               fontWeight: FontWeight.w300
                           )),
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                            padding: const EdgeInsets.symmetric(horizontal: p_20, vertical: p_14),
                           )
                       )
                   ),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: p_20,
                   ),
                   SizedBox(
-                      height:70, //height of button
+                      height: p_70, //height of button
                       width:double.infinity,
                       child : ElevatedButton(
                           onPressed: () => {
                             Navigator.pushReplacementNamed(context, "/signup")
                           },
-                          child: Text('CREATE ACCOUNT', style: TextStyle(
-                              fontSize: 23,
+                          child: const Text('CREATE ACCOUNT', style: TextStyle(
+                              fontSize: text_lg,
                               fontWeight: FontWeight.w300
                           )),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             side: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-                            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                            padding: const EdgeInsets.symmetric(horizontal: p_20, vertical: p_14),
                           )
                       )
                   ),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: p_20,
                   ),
                 ],
               ),

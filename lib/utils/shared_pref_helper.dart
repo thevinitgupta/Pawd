@@ -6,8 +6,9 @@ class SharedPrefHelper {
     return pref.getBool(_loginKey) ?? false ;
   }
 
-  static void setLoggedIn() {
-
+  static void setLoggedIn(bool loggedIn) async{
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool(_loginKey, loggedIn);
   }
 }
 

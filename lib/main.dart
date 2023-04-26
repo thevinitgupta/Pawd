@@ -1,95 +1,96 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pawd/blocs/auth_bloc.dart';
+import 'package:pawd/blocs/bloc_observer.dart';
+import 'package:pawd/utils/auth_repository.dart';
 import 'package:pawd/utils/shared_pref_helper.dart';
 import 'package:pawd/views/home.dart';
 import 'package:pawd/views/on_boarding.dart';
 import 'package:pawd/views/signup.dart';
 import 'views/welcome.dart';
 import 'views/login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:pawd/res/colors.dart';
+import 'package:pawd/res/sizes.dart';
+import 'package:pawd/res/strings.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(const MyApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseAuth.instance.setSettings(
+    appVerificationDisabledForTesting: true,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({Key? key}) : super();
 
-
-  static const int _primaryColorValue = 0xFF8875FF;
   final MaterialColor primaryColor = const MaterialColor(
-    _primaryColorValue,
-    const {
-      50: const Color(0xFFE8E7FF),
-      100: const Color(0xFFC5C3FF),
-      200: const Color(0xFFA29FFF),
-      300: const Color(0xFF7E7BFF),
-      400: const Color(0xFF5B58FF),
-      500: const Color(0xFF3835FF),
-      600: const Color(0xFF302ED6),
-      700: const Color(0xFF2727AD),
-      800: const Color(0xFF1F1F83),
-      900: const Color(0xFF17175A),
-    },
+    primaryColorValue,
+    primaryColorMap,
   );
 
   @override
-  void initState() {}
+  void initState() {
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/welcome': (context) => Welcome(),
-        '/login': (context) => Login(),
-        '/signup': (context) => Signup(),
-      },
-      theme: ThemeData(
-        primaryColor: Color(0xFF8875FF),
-        scaffoldBackgroundColor: Color(0xFF040404),
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(
-            color: Colors.white,
+    Bloc.observer = SimpleBlocObserver();
+    final UserRepository userRepository = UserRepository();
+    return BlocProvider(
+        create: (context) => AuthenticationBloc(userRepository: userRepository),
+        child : MaterialApp(
+          title: 'Flutter Demo',
+          initialRoute: '/',
+          routes: {
+            // When navigating to the "/second" route, build the SecondScreen widget.
+            '/welcome': (context) => Welcome(),
+            '/login': (context) => Login(),
+            '/signup': (context) => Signup(),
+            '/home' : (context) => Home()
+          },
+          theme: ThemeData(
+            primaryColor: primaryColor,
+            scaffoldBackgroundColor: bgColor,
+            textTheme: TextTheme(
+              bodyLarge: TextStyle(
+                  color: white
+              ),
+              bodyMedium: TextStyle(color: white30, fontSize: text_md),
+            ),
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: primaryColor)
+                .copyWith(background: bgColor),
           ),
-          bodyMedium: TextStyle(color: Colors.white30, fontSize: 22),
-        ), colorScheme: ColorScheme.fromSwatch(primarySwatch: primaryColor).copyWith(background: Color(0x121212)),
+          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context,state) {
+          return Scaffold(
+            body: FutureBuilder(
+                future: SharedPrefHelper.hasLoggedIn(),
+                builder: (context, snap) {
+                  if (snap.hasData) {
+                    final hasLoggedIn = snap.data!;
+                    if (hasLoggedIn) {
+                      // move to home page;
+                      return Home();
+                    }
+                    return OnboardingScreen();
+                  }
+
+                  return CircularProgressIndicator();
+                }),
+          );
+        }
       ),
-      home: const MyHomePage(title: 'Pawd - Todo List for the Next Gen'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-          future: SharedPrefHelper.hasLoggedIn(),
-          builder: (context, snap) {
-            if (snap.hasData) {
-              final hasLoggedIn = snap.data!;
-              if (hasLoggedIn) {
-                // move to home page;
-                return Container();
-              }
-              return Home();
-            }
-
-            return CircularProgressIndicator();
-          }),
-    );
+    ));
   }
 }

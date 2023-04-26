@@ -1,7 +1,11 @@
 import 'dart:ui';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pawd/views/index.dart';
+import 'package:pawd/res/colors.dart';
+import 'package:pawd/res/sizes.dart';
+import 'package:pawd/res/strings.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   int currentTab = 0;
   final List<Widget> screens = [
     Index(),
@@ -28,18 +33,18 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+              padding: EdgeInsets.symmetric(vertical: p_5, horizontal: p_20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(
                     EvaIcons.menu2,
                     color: Colors.white,
-                    size: 35.0,
+                    size: p_35,
                   ),
                   Text(
                     "Index",
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: TextStyle(fontSize: text_lg, color: Colors.white),
                   ),
                   CircleAvatar(
                     backgroundColor: Theme.of(context).primaryColorLight,
@@ -61,11 +66,11 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF121212),
+        color: navColor,
         shape: CircularNotchedRectangle(),
-        notchMargin: 10,
+        notchMargin: p_10,
         child: Container(
-          height: 70,
+          height: p_70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -73,7 +78,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: p_40,
                     onPressed: (){
                       setState(() {
                         currentScreen = screens[0];
@@ -85,14 +90,14 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                             currentTab==0 ? EvaIcons.home : EvaIcons.homeOutline,
-                          size: 40.0,
+                          size: p_40,
                             color: Colors.white60,
                         )
                       ],
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: p_40,
                     onPressed: (){
                       setState(() {
                         currentScreen = screens[1];
@@ -104,7 +109,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                           currentTab==1 ? EvaIcons.calendar : EvaIcons.calendarOutline,
-                          size: 40.0,
+                          size: p_40,
                           color: Colors.white60,
                         )
                       ],
@@ -116,7 +121,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: p_40,
                     onPressed: (){
                       setState(() {
                         currentScreen = screens[2];
@@ -128,14 +133,14 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                           currentTab==2 ? EvaIcons.clock : EvaIcons.clockOutline,
-                          size: 40.0,
+                          size: p_40,
                           color: Colors.white60,
                           )
                       ],
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: p_40,
                     onPressed: (){
                       setState(() {
                         currentScreen = screens[3];
@@ -147,7 +152,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Icon(
                           currentTab==3 ? EvaIcons.person : EvaIcons.personOutline,
-                          size: 40.0,
+                          size: p_40,
                           color: Colors.white60,
                           )
                       ],
