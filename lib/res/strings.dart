@@ -28,3 +28,5 @@ RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
 const indexImage = 'assets/home.svg';
+
+const homeHeadings = ["Index", "Calendar", "Focus Mode", "Profile"];

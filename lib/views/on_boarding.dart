@@ -5,6 +5,8 @@ import 'package:pawd/res/colors.dart';
 import 'package:pawd/res/sizes.dart';
 import 'package:pawd/res/strings.dart';
 
+import '../widgets/CustomNavigation.dart';
+
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -144,39 +146,5 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 }
 
-class CustomNavigationWidget extends StatelessWidget {
-  final int pageCount;
-  final int currentPageIndex;
 
-  const CustomNavigationWidget({
-    Key? key,
-    required this.pageCount,
-    required this.currentPageIndex,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        pageCount,
-            (index) =>
-            Padding(
-              padding: const EdgeInsets.all(p_8),
-              child: Container(
-                width: p_10,
-                height: p_10,
-                decoration: BoxDecoration(
-                  color: index == currentPageIndex ? Colors.white : Colors.grey,
-                  borderRadius: BorderRadius.horizontal(
-                    left: Radius.circular(p_50),
-                    right: Radius.circular(p_50),
-                  ),
-                ),
-              ),
-            ),
-      ),
-    );
-  }
-}
 

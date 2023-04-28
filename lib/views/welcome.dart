@@ -79,15 +79,15 @@ class _WelcomeState extends State<Welcome> {
                           onPressed: () => {
                             Navigator.pushReplacementNamed(context, "/signup")
                           },
-                          child: const Text('CREATE ACCOUNT', style: TextStyle(
-                              fontSize: text_lg,
-                              fontWeight: FontWeight.w300
-                          )),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.transparent,
                             side: BorderSide(color: Theme.of(context).primaryColor, width: 2),
                             padding: const EdgeInsets.symmetric(horizontal: p_20, vertical: p_14),
-                          )
+                          ),
+                          child: const Text('CREATE ACCOUNT', style: TextStyle(
+                              fontSize: text_lg,
+                              fontWeight: FontWeight.w300
+                          ))
                       )
                   ),
                   const SizedBox(

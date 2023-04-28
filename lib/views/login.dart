@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.min,
-                      children: [
+                      children: const [
                         Text(
                           "Logging In",
                           style: TextStyle(fontSize: 16, color: Colors.black),
@@ -103,16 +103,16 @@ class _LoginState extends State<Login> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             "Login",
                             style: TextStyle(
                                 fontSize: text_xl,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
-                          const SizedBox(height: p_20),
-                          const LoginForm(),
+                          SizedBox(height: p_20),
+                          LoginForm(),
                         ],
                       ),
                     ),

@@ -12,6 +12,7 @@ import 'package:pawd/res/strings.dart';
 import '../blocs/auth_bloc.dart';
 import '../blocs/data_bloc.dart';
 import '../utils/data_repository.dart';
+import '../widgets/TaskPlaceholder.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,10 +25,12 @@ class _HomeState extends State<Home> {
   int currentTab = 0;
   final List<Widget> screens = [
     const IndexPage(),
-    const Text("Calendar"),
-    const Text("Focus"),
-    const Text("Profile"),
+    const TaskPlaceholder(),
+    const TaskPlaceholder(),
+    const TaskPlaceholder(),
   ];
+
+
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const IndexPage();
@@ -50,8 +53,8 @@ class _HomeState extends State<Home> {
                       color: Colors.white,
                       size: p_35,
                     ),
-                    const Text(
-                      "Index",
+                    Text(
+                      homeHeadings[currentTab],
                       style:
                           TextStyle(fontSize: text_lg, color: Colors.white),
                     ),
