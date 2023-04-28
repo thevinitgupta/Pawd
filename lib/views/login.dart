@@ -182,37 +182,58 @@ class _LoginFormState extends State<LoginForm> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TextField(
+              TextFormField(
+                validator: (value) {
+                  if (value == null || !emailRegex.hasMatch(value)) {
+                    return emailString;
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: email,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white38, width: 2)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           color: Theme.of(context).primaryColor, width: 2)),
-                  labelText: "username",
-                  labelStyle: TextStyle(color: Colors.white38, fontSize: 22),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: password,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white38, width: 2)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor, width: 2)),
-                  labelText: "password",
+                  labelText: "Email",
                   labelStyle:
-                      const TextStyle(color: Colors.white38, fontSize: text_md),
+                  const TextStyle(color: Colors.white38, fontSize: text_md),
                 ),
               ),
               const SizedBox(
-                height: p_40,
+                height: p_30,
+              ),
+              TextFormField(
+                validator: (value) {
+                  if (value == null) {
+                    return passwordStrings[0];
+                  } else if (value.length < 8) {
+                    return passwordStrings[1];
+                  } else if (!passwordRegex.hasMatch(value)) {
+                    return passwordStrings[2];
+                  }
+                  return null;
+                },
+                obscureText: true,
+                style: const TextStyle(color: Colors.white),
+                controller: password,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white38, width: 2)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor, width: 2)),
+                  labelText: "Password",
+                  labelStyle:
+                  const TextStyle(color: Colors.white38, fontSize: text_md),
+                ),
+              ),
+              const SizedBox(
+                height: p_30,
               ),
               ElevatedButton(
                   onPressed: () {

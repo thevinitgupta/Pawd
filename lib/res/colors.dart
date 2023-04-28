@@ -25,6 +25,7 @@ const primaryColorMap = const {
 
 const  bgColor = Color(0xFF040404);
 const navColor = Color(0xFF121212);
+const tileColor = Color(0xFF262626);
 
 
 

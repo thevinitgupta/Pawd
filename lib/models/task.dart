@@ -7,4 +7,10 @@ class TaskModel{
   }
   get title => _title;
   get date => _date;
+  toJson() {
+    return {
+      "title" : this._title,
+      "date" : this._date
+    };
+  }
 }
