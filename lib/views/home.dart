@@ -13,6 +13,7 @@ import '../blocs/auth_bloc.dart';
 import '../blocs/data_bloc.dart';
 import '../utils/data_repository.dart';
 import '../widgets/TaskPlaceholder.dart';
+import 'package:pawd/views/Focus.dart' as Focus;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -26,7 +27,8 @@ class _HomeState extends State<Home> {
   final List<Widget> screens = [
     const IndexPage(),
     const TaskPlaceholder(),
-    const TaskPlaceholder(),
+    //Focus is also present in material package
+    const Focus.Focus(),
     const TaskPlaceholder(),
   ];
 
