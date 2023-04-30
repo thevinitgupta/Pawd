@@ -8,11 +8,15 @@ import 'package:pawd/views/index.dart';
 import 'package:pawd/res/colors.dart';
 import 'package:pawd/res/sizes.dart';
 import 'package:pawd/res/strings.dart';
+import 'package:pawd/views/on_boarding.dart';
 import 'package:pawd/widgets/Chart.dart';
+import 'package:pawd/widgets/Menu.dart';
+import 'package:pawd/widgets/NavButton.dart';
 
 import '../blocs/auth_bloc.dart';
 import '../blocs/data_bloc.dart';
 import '../utils/data_repository.dart';
+import '../widgets/Loader.dart';
 import '../widgets/TaskPlaceholder.dart';
 import 'package:pawd/views/Focus.dart' as Focus;
 
@@ -41,7 +45,29 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final DataBloc dataBloc = context.read<DataBloc>();
+    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
+  listener: (context, state) {
+    if(state is AuthenticationLoading){
+      Navigator.pop(context);
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return const Loader(message : "Logging out");
+        },
+      );
+    }
+    if(state is UnAuthenticated){
+      Navigator.pop(context);
+    }
+  },
+  builder: (context, state) {
+    if(state is UnAuthenticated){
+      Navigator.popUntil(context, (route) => true);
+      return OnboardingScreen();
+    }
     return Scaffold(
+        drawer: NavBar(),
         body: SafeArea(
           child: Column(
             children: [
@@ -51,11 +77,7 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      EvaIcons.menu2,
-                      color: Colors.white,
-                      size: p_35,
-                    ),
+                    NavButton(),
                     Text(
                       homeHeadings[currentTab],
                       style:
@@ -262,5 +284,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ));
+  },
+);
   }
 }
