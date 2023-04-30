@@ -8,6 +8,7 @@ import 'package:pawd/views/index.dart';
 import 'package:pawd/res/colors.dart';
 import 'package:pawd/res/sizes.dart';
 import 'package:pawd/res/strings.dart';
+import 'package:pawd/widgets/Chart.dart';
 
 import '../blocs/auth_bloc.dart';
 import '../blocs/data_bloc.dart';
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
   int currentTab = 0;
   final List<Widget> screens = [
     const IndexPage(),
-    const TaskPlaceholder(),
+    const Chart(),
     //Focus is also present in material package
     const Focus.Focus(),
     const TaskPlaceholder(),
